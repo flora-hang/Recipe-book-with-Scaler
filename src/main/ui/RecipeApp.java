@@ -18,6 +18,12 @@ public class RecipeApp {
     private Scanner input;
     private RecipeConvertor convertor;
     private Scanner scanner;
+    String unit;
+    boolean isDone;
+    String inputDone;
+    String name;
+    double amount;
+
 
     // EFFECTS: runs the teller application
     public RecipeApp() {
@@ -163,47 +169,54 @@ public class RecipeApp {
 
         System.out.println("Please enter instruction: ");
         String text = scanner.nextLine();
+        text = scanner.nextLine();
+
         recipe.addInstruction(text);
 
         addToIngredientList();
+
         book.addRecipe(recipeName, portion, time);
 
     }
 
+    //REQUIRES: the user finishes inputting an ingredient before typing done,
+    // there is at least one ingredient in the recipe
     //EFFECT: accept inputs for ingredients, if done is typed, then stop.
     // If consistent == no, then as the unit question every time, otherwise, don't as unit question repeatedly
     private void addToIngredientList() {
 
-        Scanner scanner = new Scanner(System.in);
-        boolean isDone = false;
+        scanner = new Scanner(System.in);
+
         boolean consistent = false;
-        String unit;
+
         while (!isDone) {
-            if ((scanner.nextLine() == "done")) {
-                isDone = true;
-            } else if (consistent == false) {
+
+            if (consistent == false) {
 
                 System.out.println("Please enter name of one ingredient: ");
-                String name = scanner.nextLine();
+                name = scanner.nextLine();
 
                 System.out.println("Please enter amount of ingredient: ");
-                double amount = scanner.nextInt();
+                amount = scanner.nextInt();
 
                 System.out.println("Please enter unit of ingredient: ");
-                String unit2 = scanner.nextLine();
+                unit = scanner.nextLine();
+                unit = scanner.nextLine();
 
                 System.out.println("Is this unit consistent throughout the recipe (yes or no) ? ");
                 String consist = scanner.nextLine();
+
                 if (consist.equals("yes")) {
                     consistent = true;
                 }
                 System.out.println("if you are done with inputting, "
-                        + "type done as answer to the next question, otherwise, please answer as usual");
-
-                recipe.addIngredient(new Ingredients(name, amount, unit2));
-                unit = unit2;
+                        + "type done as answer to this question, otherwise, please press enter and answer as usual");
+                inputDone = scanner.nextLine();
+                isDone();
+                recipe.addIngredient(new Ingredients(name, amount, this.unit));
 
             } else {
+                isDone();
                 System.out.println("Please enter name of one ingredient: ");
                 String name1 = scanner.nextLine();
 
@@ -211,10 +224,19 @@ public class RecipeApp {
                 double amount1 = scanner.nextInt();
 
                 recipe.addIngredient(new Ingredients(name1, amount1, unit));
+                //after second ingredient input the two questions appear together
 
             }
 
         }
 
+    }
+
+    //EFFECT: return if "done" is typed after inputting ingredient
+    private boolean isDone() {
+        if (inputDone.equals("done")) {
+            isDone = true;
+        }
+        return isDone;
     }
 }
