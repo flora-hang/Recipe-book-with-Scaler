@@ -21,11 +21,10 @@ like this one, I could save so much time doing math calculations.
 
 ## User Story
 - I want to be able to add original and adjusted recipes to my recipe collection
-- I want to be able to convert between units 
 - I want to be able to view my recipe collections
 - I want to be able to scale my recipes
 - I want to be able to access the original recipe through the scale recipe through a link
 - I want to be able to specify the portion, preparation time, and list of ingredients for each recipe
 - I want to be able to filter my recipes according to preparation time and ingredients
-- I want to be able to classify my recipes according to dietary restrictions (kosher, vegitarian, etc.)
+
  

@@ -1,41 +1,42 @@
 package model;
 
-
+// representing an ingredient, with a name, the amount, and in what unit
 public class Ingredients {
 
     String name;
-    int amount;
+    double amount;
     String unit;
 
-    public Ingredients(String name, int amount,String unit) {
+    //EFFECT: constructs an ingredient
+    public Ingredients(String name, double amount,String unit) {
         this.name = name;
         this.amount = amount;
         this.unit = unit;
     }
 
-    private void unitConvertor(String targetUnit) {
 
-        if (targetUnit.equals("cups and spoon")) {
-            //stub
-        } else if (targetUnit.equals("grams")) {
-            //stub
-        } else {
-            //stub
-        }
-
+    public String getName() {
+        return name;
     }
 
-    private String getName() {
-        return this.name;
+    public double getAmount() {
+        return amount;
     }
 
-    private int getAmount() {
-        return 0;
+    public String getUnit() {
+        return unit;
     }
 
-    private String getUnit() {
-        return this.unit;
+    public void changeName(String newName) {
+        this.name = newName;
     }
 
+    public void changeAmount(double newAmount) {
+        this.amount = newAmount;
+    }
+
+    public void changeUnit(String newUnit) {
+        this.unit = newUnit;
+    }
 
 }
