@@ -3,11 +3,12 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RecipeConverterTest {
+
     RecipeConvertor rc;
     Recipe recipe;
     Ingredients i1;
@@ -38,7 +39,7 @@ class RecipeConverterTest {
     @Test
     void scaleBasedOnNumTest() {
         rc.scaleBasedOnNum(3);
-        assertEquals(27, recipe.getPortion());
+        assertEquals(27, rc.scaledRecipe.getPortion());
         assertEquals(3000, recipe.findIngredient("flour").getAmount());
         assertEquals(900, recipe.findIngredient("water").getAmount());
         assertEquals(120, recipe.findIngredient("sugar").getAmount());

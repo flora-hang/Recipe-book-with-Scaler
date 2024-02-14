@@ -26,9 +26,10 @@ public class RecipeConvertor {
         for (Ingredients i : ingredients) {
             scaledRecipe.addIngredient(i);
         }
+        ArrayList<Ingredients> newIngredients = scaledRecipe.getIngredientList();
         scaledRecipe.changePortion(recipe.getPortion() * scale);
 
-        for (Ingredients i : ingredients) {
+        for (Ingredients i : newIngredients) {
             double amount = i.getAmount();
             i.changeAmount(amount * scale);
         }
@@ -41,9 +42,9 @@ public class RecipeConvertor {
     //divided by the original amount, take that number, and multiply the ingredients and portion by it.
     public Recipe scaleBasedOnIngredient(Ingredients ingredient, double amount) {
 
-        double givenAmount = amount;
+
         double baseAmount = recipe.findIngredient(ingredient.getName()).getAmount();
-        double scaleConstant = givenAmount / baseAmount;
+        double scaleConstant = amount / baseAmount;
 
         scaledRecipe = new Recipe(recipe.getRecipeName() + ".scaledByIngredient",
                 recipe.getPortion(), recipe.getPrepTime(), recipe.getInstruction());

@@ -1,7 +1,6 @@
 package model;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 //representing a recipe with a name, how many portions is served,
@@ -14,7 +13,7 @@ public class Recipe {
     private int prepTime;
     private String instructions;
     private ArrayList<Ingredients> ingredientList;
-    private String instruction;
+
 
     //EFFECT: constructs a recipe with a name, how many portions is served,
     // the prep time, if it is vegan, if it is kosher
@@ -25,13 +24,8 @@ public class Recipe {
         this.recipeName = recipeName;
         this.prepTime = prepTime;
         instructions = instruction;
-        ingredientList = new ArrayList<Ingredients>();
+        ingredientList = new ArrayList<>();
 
-    }
-
-    //EFFECT: add instruction to recipe
-    public void addInstruction(String text) {
-        instructions = text;
     }
 
     public String getInstruction() {
