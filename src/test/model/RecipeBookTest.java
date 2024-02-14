@@ -24,7 +24,7 @@ public class RecipeBookTest {
         l1 = new ArrayList<Ingredients>();
 
         r1 = new Recipe("New England Clam chowder", 4, 60, "instructions");
-        r2 = new Recipe("sauteé mushroom", 2, 30, "instructions");
+        r2 = new Recipe("mushroom", 2, 30, "instructions");
         r3 = new Recipe("Milk tea", 1, 20, "instruction");
         r4 = new Recipe("Best ginger Bread", 6, 120, "instruction");
         book = new RecipeBook("My collection");
