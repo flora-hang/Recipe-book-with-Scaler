@@ -38,23 +38,25 @@ class RecipeConverterTest {
 
     @Test
     void scaleBasedOnNumTest() {
-        rc.scaleBasedOnNum(3);
+        rc.scaleBasedOnNum(recipe,3);
         assertEquals(27, rc.scaledRecipe.getPortion());
-        assertEquals(3000, recipe.findIngredient("flour").getAmount());
-        assertEquals(900, recipe.findIngredient("water").getAmount());
-        assertEquals(120, recipe.findIngredient("sugar").getAmount());
-        assertEquals(6, recipe.findIngredient("salt").getAmount());
-        assertEquals(210, recipe.findIngredient("butter").getAmount());
+        assertEquals(1000, recipe.findIngredient("flour").getAmount());
+        assertEquals(3000, rc.scaledRecipe.findIngredient("flour").getAmount());
+        assertEquals(900, rc.scaledRecipe.findIngredient("water").getAmount());
+        assertEquals(120, rc.scaledRecipe.findIngredient("sugar").getAmount());
+        assertEquals(6, rc.scaledRecipe.findIngredient("salt").getAmount());
+        assertEquals(210, rc.scaledRecipe.findIngredient("butter").getAmount());
     }
 
     @Test
     void scaleBasedOnIngredientTest() {
-        rc.scaleBasedOnIngredient(i5, 210);
-        assertEquals(27, recipe.getPortion());
-        assertEquals(3000, recipe.findIngredient("flour").getAmount());
-        assertEquals(900, recipe.findIngredient("water").getAmount());
-        assertEquals(120, recipe.findIngredient("sugar").getAmount());
-        assertEquals(6, recipe.findIngredient("salt").getAmount());
-        assertEquals(210, recipe.findIngredient("butter").getAmount());
+        rc.scaleBasedOnIngredient(recipe, i5, 210);
+        assertEquals(9, recipe.getPortion());
+        assertEquals(27, rc.scaledRecipe.getPortion());
+        assertEquals(3000, rc.scaledRecipe.findIngredient("flour").getAmount());
+        assertEquals(900, rc.scaledRecipe.findIngredient("water").getAmount());
+        assertEquals(120, rc.scaledRecipe.findIngredient("sugar").getAmount());
+        assertEquals(6, rc.scaledRecipe.findIngredient("salt").getAmount());
+        assertEquals(210, rc.scaledRecipe.findIngredient("butter").getAmount());
     }
 }

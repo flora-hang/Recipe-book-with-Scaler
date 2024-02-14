@@ -88,13 +88,14 @@ public class RecipeApp {
             String name = scanner.nextLine();
             System.out.println("Please enter ingredient amount: ");
             double amount = scanner.nextInt();
-            book.addRecipe(convertor.scaleBasedOnIngredient(recipe.findIngredient(name), amount));
+            book.addRecipe(convertor.scaleBasedOnIngredient(book.findRecipe(recipeName),
+                    recipe.findIngredient(name), amount));
 
 
         } else {
             System.out.println("Please enter the number you want to scale your recipe by: ");
             int n = scanner.nextInt();
-            book.addRecipe(convertor.scaleBasedOnNum(n));
+            book.addRecipe(convertor.scaleBasedOnNum(book.findRecipe(recipeName), n));
         }
 
     }
