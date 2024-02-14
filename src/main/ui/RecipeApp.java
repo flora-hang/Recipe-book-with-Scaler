@@ -6,7 +6,7 @@ import model.Recipe;
 import model.RecipeBook;
 import model.RecipeConvertor;
 
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,13 +16,15 @@ public class RecipeApp {
     private RecipeBook book;
     private Recipe recipe;
     private Scanner input;
-    private RecipeConvertor convertor;
     private Scanner scanner;
     String unit;
-    boolean isDone;
-    String inputDone;
     String name;
     double amount;
+    String recipeName;
+    String inputDone;
+    double portion;
+    int time;
+
 
 
     // EFFECTS: runs the teller application
@@ -34,7 +36,7 @@ public class RecipeApp {
     // EFFECTS: processes user input
     private void runRecipe() {
         boolean keepGoing = true;
-        int command = 0;
+        int command;
 
         init();
 
@@ -74,22 +76,27 @@ public class RecipeApp {
         System.out.println("please enter name of recipe: ");
         String recipeName = scanner.nextLine();
 
+        RecipeConvertor convertor;
         convertor = new RecipeConvertor(book.findRecipe(recipeName));
         System.out.println("Would you like to scale by limited ingredient(1) or by number(2)? ");
         int method = scanner.nextInt();
 
         if (method == 1) {
+
+            scanner = new Scanner(System.in);
             System.out.println("Please enter ingredient name: ");
             String name = scanner.nextLine();
             System.out.println("Please enter ingredient amount: ");
             double amount = scanner.nextInt();
-            convertor.scaleBasedOnIngredient(recipe.findIngredient(name), amount);
+            book.addRecipe(convertor.scaleBasedOnIngredient(recipe.findIngredient(name), amount));
+
 
         } else {
             System.out.println("Please enter the number you want to scale your recipe by: ");
             int n = scanner.nextInt();
-            convertor.scaleBasedOnNum(n);
+            book.addRecipe(convertor.scaleBasedOnNum(n));
         }
+
     }
 
 
@@ -97,7 +104,7 @@ public class RecipeApp {
     // EFFECTS: initializes accounts
     private void init() {
         book = new RecipeBook("first Collection");
-        recipe = new Recipe("Best Croissant", 10, 90);
+        recipe = new Recipe("Best Croissant", 10, 90, "instructions..");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -132,15 +139,16 @@ public class RecipeApp {
         recipe = book.findRecipe(name);
         if (recipe == null) {
             System.out.println("The recipe you searched for does not exist, add it yourself! ");
-            runRecipe();
+
+        } else {
+            System.out.println(recipe.getRecipeName());
+            System.out.println("Portions: " + recipe.getPortion());
+            System.out.println("Time Needed: " + recipe.getPrepTime());
+            System.out.println("Ingredients needed: \n");
+            printIngredients(recipe);
+            System.out.println();
+            System.out.println(recipe.getInstruction());
         }
-        System.out.println(recipe.getRecipeName());
-        System.out.println("Portions: " + recipe.getPortion());
-        System.out.println("Time Needed: " + recipe.getPrepTime());
-        System.out.println("Ingredients needed: \n");
-        printIngredients(recipe);
-
-
     }
 
     //EFFECT: print out ingredient list
@@ -148,9 +156,9 @@ public class RecipeApp {
 
         ArrayList<Ingredients> list = recipe.getIngredientList();
         for (Ingredients ingredient : list) {
-            System.out.println(ingredient.getName() + "  "
-                    + ingredient.getAmount() + ingredient.getUnit());
+            System.out.println(ingredient.getName() + ": " + ingredient.getAmount() + ingredient.getUnit());
         }
+
     }
 
     //MODIFIES: book
@@ -159,45 +167,50 @@ public class RecipeApp {
         scanner = new Scanner(System.in);
 
         System.out.println("Please enter name of recipe: ");
-        String recipeName = scanner.nextLine();
+        recipeName = scanner.nextLine();
 
         System.out.println("Please enter portion of recipe (in number): ");
-        int portion = scanner.nextInt();
+        portion = scanner.nextDouble();
 
         System.out.println("Please enter prep time of recipe (in minutes): ");
-        int time = scanner.nextInt();
-
+        time = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Please enter instruction: ");
         String text = scanner.nextLine();
-        text = scanner.nextLine();
 
-        recipe.addInstruction(text);
+        inputDone = text;
+        recipe  = new Recipe(recipeName, portion, time, text);
 
         addToIngredientList();
 
-        book.addRecipe(recipeName, portion, time);
+        book.addRecipe(recipe);
 
+        System.out.println("Recipe has been added!");
     }
 
     //REQUIRES: the user finishes inputting an ingredient before typing done,
     // there is at least one ingredient in the recipe
     //EFFECT: accept inputs for ingredients, if done is typed, then stop.
     // If consistent == no, then as the unit question every time, otherwise, don't as unit question repeatedly
+    @SuppressWarnings("methodlength")
     private void addToIngredientList() {
 
-        scanner = new Scanner(System.in);
-
+        boolean isDone = false;
+        boolean notWarn = true;
         boolean consistent = false;
-
         while (!isDone) {
 
-            if (consistent == false) {
+            if ((!consistent) && !(inputDone.equals("done"))) {
 
+                scanner = new Scanner(System.in);
                 System.out.println("Please enter name of one ingredient: ");
                 name = scanner.nextLine();
 
+                if (name.equals("done")) {
+                    break;
+                }
                 System.out.println("Please enter amount of ingredient: ");
-                amount = scanner.nextInt();
+                amount = scanner.nextDouble();
 
                 System.out.println("Please enter unit of ingredient: ");
                 unit = scanner.nextLine();
@@ -209,21 +222,37 @@ public class RecipeApp {
                 if (consist.equals("yes")) {
                     consistent = true;
                 }
-                System.out.println("if you are done with inputting, "
-                        + "type done as answer to this question, otherwise, please press enter and answer as usual");
-                inputDone = scanner.nextLine();
-                isDone();
+                if (consist.equals("done")) {
+                    recipe.addIngredient(new Ingredients(name, amount, this.unit));
+                    break;
+                }
+                if (notWarn) {
+                    System.out.println("if you are done with inputting, "
+                            + "type done as answer to this question, otherwise, "
+                            + "please press enter and answer as usual");
+                    notWarn = false;
+                    inputDone = scanner.nextLine();
+                }
+
+                if (inputDone.equals("done")) {
+                    isDone = true;
+                }
+
                 recipe.addIngredient(new Ingredients(name, amount, this.unit));
 
-            } else {
-                isDone();
+            } else if (!inputDone.equals("done")) {
+                scanner = new Scanner(System.in);
                 System.out.println("Please enter name of one ingredient: ");
-                String name1 = scanner.nextLine();
+                name = scanner.nextLine();
+                String conti = name;
 
+                if (conti.equals("done")) {
+                    break;
+                }
                 System.out.println("Please enter amount of ingredient: ");
-                double amount1 = scanner.nextInt();
+                amount = scanner.nextDouble();
 
-                recipe.addIngredient(new Ingredients(name1, amount1, unit));
+                recipe.addIngredient(new Ingredients(name, amount, unit));
                 //after second ingredient input the two questions appear together
 
             }
@@ -232,11 +261,5 @@ public class RecipeApp {
 
     }
 
-    //EFFECT: return if "done" is typed after inputting ingredient
-    private boolean isDone() {
-        if (inputDone.equals("done")) {
-            isDone = true;
-        }
-        return isDone;
-    }
+
 }

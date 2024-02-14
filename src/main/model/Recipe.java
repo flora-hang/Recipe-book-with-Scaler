@@ -12,28 +12,32 @@ public class Recipe {
     private String recipeName;
     private double portion;
     private int prepTime;
+    private String instructions;
     private ArrayList<Ingredients> ingredientList;
     private String instruction;
 
     //EFFECT: constructs a recipe with a name, how many portions is served,
     // the prep time, if it is vegan, if it is kosher
-    public Recipe(String recipeName, int portion, int prepTime) {
+    public Recipe(String recipeName, double portion, int prepTime,
+                  String instruction) {
 
         this.portion = portion;
         this.recipeName = recipeName;
         this.prepTime = prepTime;
+        instructions = instruction;
         ingredientList = new ArrayList<Ingredients>();
 
     }
 
     //EFFECT: add instruction to recipe
     public void addInstruction(String text) {
-        instruction = text;
+        instructions = text;
     }
 
     public String getInstruction() {
-        return instruction;
+        return instructions;
     }
+
     //REQUIRES: ingredient has a different name than ingredients in the list
     //MODIFIES: this
     //EFFECT: add a ingredient to the list of ingredients

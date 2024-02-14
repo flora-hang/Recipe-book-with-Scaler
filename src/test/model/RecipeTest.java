@@ -21,7 +21,7 @@ public class RecipeTest {
 
     @BeforeEach
     void runBefore() {
-        recipe = new Recipe("Best Croissant", 9, 90);
+        recipe = new Recipe("Best Croissant", 9, 90, "instructions");
         i1 = new Ingredients("flour", 1000, "g");
         i2 = new Ingredients("water", 300, "g");
         i3 = new Ingredients("sugar", 40, "g");

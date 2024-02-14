@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RecipeConvertor {
 
     Recipe recipe;
+    Recipe scaledRecipe;
 
 
     //EFFECTS: multiply the amount of ingredients by the number given,
@@ -13,17 +14,26 @@ public class RecipeConvertor {
         this.recipe = recipe;
     }
 
-    //EFFECT: scale the recipe given a number
+    //REQUIRES: !recipe.getIngredientList().isEmpty()
+    // EFFECT: scale the recipe given a number
     public Recipe scaleBasedOnNum(double scale) {
-        ArrayList<Ingredients> ingredients = recipe.getIngredientList();
 
-        recipe.changePortion(recipe.getPortion() * scale);
+
+        scaledRecipe = new Recipe(recipe.getRecipeName() + ".scaledByNum",
+                recipe.getPortion(), recipe.getPrepTime(), recipe.getInstruction());
+
+        ArrayList<Ingredients> ingredients = recipe.getIngredientList();
+        for (Ingredients i : ingredients) {
+            scaledRecipe.addIngredient(i);
+        }
+        scaledRecipe.changePortion(recipe.getPortion() * scale);
 
         for (Ingredients i : ingredients) {
             double amount = i.getAmount();
             i.changeAmount(amount * scale);
         }
-        return recipe;
+
+        return scaledRecipe;
     }
 
     //REQUIRES: the ingredient given to be in the same unit as the same ingredient in the recipe
@@ -35,11 +45,20 @@ public class RecipeConvertor {
         double baseAmount = recipe.findIngredient(ingredient.getName()).getAmount();
         double scaleConstant = givenAmount / baseAmount;
 
+        scaledRecipe = new Recipe(recipe.getRecipeName() + ".scaledByIngredient",
+                recipe.getPortion(), recipe.getPrepTime(), recipe.getInstruction());
+
+        ArrayList<Ingredients> ingredients = recipe.getIngredientList();
+        for (Ingredients i : ingredients) {
+            scaledRecipe.addIngredient(i);
+        }
+        scaledRecipe.changePortion(recipe.getPortion() * scaleConstant);
+
         recipe.changePortion(scaleConstant * recipe.getPortion());
-        for (Ingredients i : recipe.getIngredientList()) {
+        for (Ingredients i : scaledRecipe.getIngredientList()) {
             i.changeAmount(scaleConstant * i.getAmount());
         }
-        return recipe;
+        return scaledRecipe;
 
     }
 }

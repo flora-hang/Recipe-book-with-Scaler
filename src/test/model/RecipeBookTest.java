@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RecipeBookTest {
@@ -13,25 +15,29 @@ public class RecipeBookTest {
     Recipe r3;
     Recipe r4;
 
+    ArrayList<Ingredients> l1;
     RecipeBook book;
     RecipeBook book2;
 
     @BeforeEach
     void runBefore() {
-        r1 = new Recipe("New England Clam chowder", 4, 60);
-        r2 = new Recipe("sauteé mushroom", 2, 30);
-        r3 = new Recipe("Milk tea", 1, 20);
-        r4 = new Recipe("Best ginger Bread", 6, 120);
+        l1 = new ArrayList<Ingredients>();
+
+        r1 = new Recipe("New England Clam chowder", 4, 60, "instructions");
+        r2 = new Recipe("sauteé mushroom", 2, 30, "instructions");
+        r3 = new Recipe("Milk tea", 1, 20, "instruction");
+        r4 = new Recipe("Best ginger Bread", 6, 120, "instruction");
         book = new RecipeBook("My collection");
         book2 = new RecipeBook("my book");
         book.addRecipe(r1);
         book.addRecipe(r2);
         book.addRecipe(r3);
+
     }
     @Test
     void addRecipeTest() {
 
-        book2.addRecipe("Best ginger Bread", 6, 120);
+        book2.addRecipe(r4);
         assertEquals(book2.getRecipes().get(0), book2.findRecipe("Best ginger Bread"));
     }
 

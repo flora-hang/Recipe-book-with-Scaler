@@ -27,14 +27,20 @@ public class Ingredients {
         return unit;
     }
 
+    //MODIFIES: this
+    //EFFECTS: change ingredient name to given name
     public void changeName(String newName) {
         this.name = newName;
     }
 
+    //MODIFIES: this
+    //EFFECTS: change ingredient amount to given amount
     public void changeAmount(double newAmount) {
         this.amount = newAmount;
     }
 
+    //MODIFIES: this
+    //EFFECTS: change ingredient unit to given unit
     public void changeUnit(String newUnit) {
         this.unit = newUnit;
     }

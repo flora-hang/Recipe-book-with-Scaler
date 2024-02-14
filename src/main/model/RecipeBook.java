@@ -15,13 +15,6 @@ public class RecipeBook {
         recipeBook = new ArrayList<Recipe>();
 
     }
-    
-    public void addRecipe(String name, int prepTime, int portions) {
-
-        recipe = new Recipe(name, portions, prepTime);
-        recipeBook.add(recipe);
-
-    }
 
     //EFFECT: for test purpose, add a recipe to recipe book
     public void addRecipe(Recipe recipe) {
