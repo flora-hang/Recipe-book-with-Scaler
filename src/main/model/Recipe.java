@@ -3,8 +3,7 @@ package model;
 
 import java.util.ArrayList;
 
-//representing a recipe with a name, how many portions is served,
-// the prep time, if it is vegan, if it is kosher
+//representing a recipe with a name, how many portions is served, the prep time
 
 public class Recipe {
 
@@ -16,7 +15,7 @@ public class Recipe {
 
 
     //EFFECT: constructs a recipe with a name, how many portions is served,
-    // the prep time, if it is vegan, if it is kosher
+    // the prep time
     public Recipe(String recipeName, double portion, int prepTime,
                   String instruction) {
 
@@ -63,7 +62,6 @@ public class Recipe {
         this.prepTime = newTime;
     }
 
-    //REQUIRES: no replication of ingredient name in list
     //EFFECT: find ingredient based on inputted string, ignore case
     public Ingredients findIngredient(String name) {
         Ingredients ing = null;

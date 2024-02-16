@@ -26,8 +26,7 @@ public class RecipeApp {
     int time;
 
 
-
-    // EFFECTS: runs the teller application
+    // EFFECTS: constructor that runs the teller application
     public RecipeApp() {
         runRecipe();
     }
@@ -68,6 +67,7 @@ public class RecipeApp {
         }
     }
 
+    //MODIFIES: this
     //EFFECT: take user input to scale the recipe
     private void scaleRecipe() {
 
@@ -76,8 +76,10 @@ public class RecipeApp {
         System.out.println("please enter name of recipe: ");
         String recipeName = scanner.nextLine();
 
+        Recipe recipe = book.findRecipe(recipeName);
+
         RecipeConvertor convertor;
-        convertor = new RecipeConvertor(book.findRecipe(recipeName));
+        convertor = new RecipeConvertor(recipe);
         System.out.println("Would you like to scale by limited ingredient(1) or by number(2)? ");
         int method = scanner.nextInt();
 
@@ -110,6 +112,7 @@ public class RecipeApp {
         input.useDelimiter("\n");
     }
 
+    // MODIFIES: this
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
@@ -119,6 +122,7 @@ public class RecipeApp {
         System.out.println("\t4 -> quit");
     }
 
+    //MODIFIES: this
     //EFFECT: display a list of recipes with their name
     private void viewRecipes() {
 
@@ -133,6 +137,9 @@ public class RecipeApp {
 
     }
 
+
+    //EFFECTS: try to find individual recipe and print it out,
+    // if not found print a message to let the user know the recipe does not exist
     private void viewIndividualRecipe() {
         scanner = new Scanner(System.in);
         System.out.println("please enter name of the recipe to view individual recipes (not case sensitive): ");
@@ -152,6 +159,7 @@ public class RecipeApp {
         }
     }
 
+    //MODIFIES: this
     //EFFECT: print out ingredient list
     private void printIngredients(Recipe recipe) {
 
@@ -162,7 +170,7 @@ public class RecipeApp {
 
     }
 
-    //MODIFIES: book
+    //MODIFIES: RecipeBook
     //EFFECT: take inputs for recipe specification and add recipe to recipe book
     private void addRecipeToBook() {
         scanner = new Scanner(System.in);
@@ -180,7 +188,7 @@ public class RecipeApp {
         String text = scanner.nextLine();
 
         inputDone = text;
-        recipe  = new Recipe(recipeName, portion, time, text);
+        recipe = new Recipe(recipeName, portion, time, text);
 
         addToIngredientList();
 
@@ -191,6 +199,7 @@ public class RecipeApp {
 
     //REQUIRES: the user finishes inputting an ingredient before typing done,
     // there is at least one ingredient in the recipe
+    //MODIFIES: Recipe
     //EFFECT: accept inputs for ingredients, if done is typed, then stop.
     // If consistent == no, then as the unit question every time, otherwise, don't as unit question repeatedly
     @SuppressWarnings("methodlength")
@@ -212,9 +221,9 @@ public class RecipeApp {
                 }
                 System.out.println("Please enter amount of ingredient: ");
                 amount = scanner.nextDouble();
-
+                scanner.nextLine();
                 System.out.println("Please enter unit of ingredient: ");
-                unit = scanner.nextLine();
+
                 unit = scanner.nextLine();
 
                 System.out.println("Is this unit consistent throughout the recipe (yes or no) ? ");

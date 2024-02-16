@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 public class RecipeConvertor {
 
-    Recipe original;
     Recipe scaledRecipe;
-
-
     Ingredients newI;
 
     //EFFECTS: multiply the amount of ingredients by the number given,
@@ -18,8 +15,9 @@ public class RecipeConvertor {
 
     }
 
-    //REQUIRES: !recipe.getIngredientList().isEmpty()
-    // EFFECT: scale the recipe given a number
+    // REQUIRES: !recipe.getIngredientList().isEmpty()
+    // MODIFIES: Recipe
+    // EFFECT: scale the recipe given a number, and store tha altered recipe as a separate new recipe
     public Recipe scaleBasedOnNum(Recipe original, double scale) {
 
 
@@ -41,8 +39,9 @@ public class RecipeConvertor {
         return scaledRecipe;
     }
 
-    //REQUIRES: the ingredient given to be in the same unit as the same ingredient in the recipe
-    //EFFECT: scale based on the limiting ingredient, take the double of the amount of ingredient given
+    // REQUIRES: the ingredient given to be in the same unit as the same ingredient in the recipe
+    // MODIFIES: Recipe
+    // EFFECT: scale based on the limiting ingredient, take the double of the amount of ingredient given
     //divided by the original amount, take that number, and multiply the ingredients and portion by it.
     public Recipe scaleBasedOnIngredient(Recipe original, Ingredients ingredient, double amount) {
 
@@ -58,7 +57,7 @@ public class RecipeConvertor {
             newI = new Ingredients(i.getName(), i.getAmount(), i.getUnit());
             scaledRecipe.addIngredient(newI);
         }
-        ArrayList<Ingredients> newIngredients = scaledRecipe.getIngredientList();
+
         scaledRecipe.changePortion(original.getPortion() * scaleConstant);
 
         for (Ingredients i : scaledRecipe.getIngredientList()) {

@@ -7,7 +7,7 @@ public class Ingredients {
     double amount;
     String unit;
 
-    //EFFECT: constructs an ingredient
+    //EFFECT: constructs an ingredient with a name, an amount, and a unit
     public Ingredients(String name, double amount,String unit) {
         this.name = name;
         this.amount = amount;
