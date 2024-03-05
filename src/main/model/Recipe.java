@@ -1,11 +1,17 @@
 package model;
 
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 
 //representing a recipe with a name, how many portions is served, the prep time
 
-public class Recipe {
+public class Recipe implements Writable {
 
     private String recipeName;
     private double portion;
@@ -80,6 +86,27 @@ public class Recipe {
     public ArrayList<Ingredients> getIngredientList() {
 
         return ingredientList;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Recipe name", recipeName);
+        json.put("Recipe portion", portion);
+        json.put("Recipe prep time", prepTime);
+        json.put("Recipe instruction", instructions);
+        json.put("ingredients", ingredientsToJSon());
+        return json;
+    }
+
+    private JSONArray ingredientsToJSon() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Ingredients i : ingredientList) {
+            jsonArray.put(i.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

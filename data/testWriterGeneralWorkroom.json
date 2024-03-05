@@ -1,0 +1,19 @@
+{
+    "recipes": [
+        {
+            "Recipe instruction": "...",
+            "Recipe portion": 8,
+            "ingredients": [],
+            "Recipe name": "cake",
+            "Recipe prep time": 20
+        },
+        {
+            "Recipe instruction": "...",
+            "Recipe portion": 6,
+            "ingredients": [],
+            "Recipe name": "tea",
+            "Recipe prep time": 5
+        }
+    ],
+    "name": "Collection"
+}

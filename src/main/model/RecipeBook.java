@@ -1,9 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-
-public class RecipeBook {
+public class RecipeBook implements Writable {
     ArrayList<Recipe> recipeBook;
     String nameOfRecipeBook;
     String collectionName;
@@ -25,6 +30,10 @@ public class RecipeBook {
         return recipeBook;
     }
 
+    public String getName() {
+        return nameOfRecipeBook;
+    }
+
     //EFFECT: based on inputting string find the recipe with matching name, ignore case
     public Recipe findRecipe(String name) {
         Recipe r = null;
@@ -37,6 +46,26 @@ public class RecipeBook {
         }
         return r;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", nameOfRecipeBook);
+        json.put("recipes", recipesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray recipesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Recipe r : recipeBook) {
+            jsonArray.put(r.toJson());
+        }
+
+        return jsonArray;
+    }
+
 
 
 }

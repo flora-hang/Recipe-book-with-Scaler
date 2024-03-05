@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // representing an ingredient, with a name, the amount, and in what unit
-public class Ingredients {
+public class Ingredients implements Writable {
 
     String name;
     double amount;
@@ -43,6 +47,14 @@ public class Ingredients {
     //EFFECTS: change ingredient unit to given unit
     public void changeUnit(String newUnit) {
         this.unit = newUnit;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("amount", amount);
+        json.put("unit", unit);
+        return json;
     }
 
 }
