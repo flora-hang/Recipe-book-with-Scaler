@@ -1,7 +1,7 @@
 package model;
 
 
-import org.json.JSONObject;
+import org.json.*;
 import persistence.Writable;
 
 // representing an ingredient, with a name, the amount, and in what unit

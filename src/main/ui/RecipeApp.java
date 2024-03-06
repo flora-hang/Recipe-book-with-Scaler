@@ -45,6 +45,8 @@ public class RecipeApp {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
+        loadWorkRoom();
+
         init();
 
         while (keepGoing) {
