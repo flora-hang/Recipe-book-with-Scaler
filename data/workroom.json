@@ -1,14 +1,14 @@
 {
     "recipes": [{
         "Recipe instruction": "in",
-        "Recipe portion": 4,
+        "Recipe portion": 30,
         "ingredients": [{
             "amount": 3,
-            "unit": "g",
-            "name": "por"
+            "unit": "lbs",
+            "name": "pork"
         }],
         "Recipe name": "bacon",
-        "Recipe prep time": 3
+        "Recipe prep time": 30
     }],
     "name": "first Collection"
 }
