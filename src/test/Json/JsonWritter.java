@@ -1,5 +1,6 @@
 package Json;
 
+import model.Ingredients;
 import model.Recipe;
 import model.RecipeBook;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
-
-
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JsonWriterTest extends JsonTest {
     //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
@@ -39,15 +31,15 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyRecipeBook() {
         try {
             RecipeBook recipeBook = new RecipeBook("Collection");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyRecipeBook.json");
             writer.open();
             writer.write(recipeBook);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyRecipeBook.json");
             recipeBook = reader.read();
             assertEquals("Collection", recipeBook.getName());
             assertEquals(0, recipeBook.getRecipes().size());
@@ -57,21 +49,32 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralRecipeBook() {
         try {
             RecipeBook recipeBook = new RecipeBook("Collection");
-            recipeBook.addRecipe(new Recipe("cake", 8, 20, "..."));
-            recipeBook.addRecipe(new Recipe("tea", 6, 5, "..."));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            Recipe recipe1 = new Recipe("cake", 8, 20, "...");
+            Recipe recipe2 = new Recipe("tea", 6, 5, "...");
+            Ingredients i1 = new Ingredients("egg", 3, "");
+            Ingredients i2 = new Ingredients("tea leaf", 3, "g");
+            recipe1.addIngredient(i1);
+            recipe2.addIngredient(i2);
+            recipeBook.addRecipe(recipe1);
+            recipeBook.addRecipe(recipe2);
+
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralRecipeBook.json");
             writer.open();
             writer.write(recipeBook);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralRecipeBook.json");
             recipeBook = reader.read();
             assertEquals("Collection", recipeBook.getName());
             List<Recipe> recipes = recipeBook.getRecipes();
+            List<Ingredients> ingredients1 = recipe1.getIngredientList();
+            List<Ingredients> ingredients2 = recipe2.getIngredientList();
             assertEquals(2, recipes.size());
+            assertEquals(ingredients2, recipe2.getIngredientList());
+            assertEquals(ingredients1, recipe1.getIngredientList());
             checkRecipe("cake",  recipes.get(0), 8);
             checkRecipe("tea", recipes.get(1), 6);
 

@@ -3,14 +3,22 @@
         {
             "Recipe instruction": "...",
             "Recipe portion": 8,
-            "ingredients": [],
+            "ingredients": [{
+                "amount": 3,
+                "unit": "",
+                "name": "egg"
+            }],
             "Recipe name": "cake",
             "Recipe prep time": 20
         },
         {
             "Recipe instruction": "...",
             "Recipe portion": 6,
-            "ingredients": [],
+            "ingredients": [{
+                "amount": 3,
+                "unit": "g",
+                "name": "tea leaf"
+            }],
             "Recipe name": "tea",
             "Recipe prep time": 5
         }

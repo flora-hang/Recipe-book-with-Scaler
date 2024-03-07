@@ -10,5 +10,9 @@ class JsonTest {
         assertEquals(name, recipe.getRecipeName());
         assertEquals(portion, recipe.getPortion());
     }
+    protected void checkIngredient(String name, Ingredients ingredient, double amount) {
+        assertEquals(name, ingredient.getName());
+        assertEquals(amount, ingredient.getAmount());
+    }
 }
 
