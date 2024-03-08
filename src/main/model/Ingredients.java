@@ -49,6 +49,7 @@ public class Ingredients implements Writable {
         this.unit = newUnit;
     }
 
+    @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);

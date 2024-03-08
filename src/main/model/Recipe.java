@@ -99,6 +99,7 @@ public class Recipe implements Writable {
         return json;
     }
 
+    // EFFECTS: returns ingredients in this recipe as a JSON array
     private JSONArray ingredientsToJSon() {
         JSONArray jsonArray = new JSONArray();
 
