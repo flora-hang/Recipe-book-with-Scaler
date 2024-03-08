@@ -24,7 +24,9 @@ like this one, I could save so much time doing math calculations.
 - I want to be able to view my recipe collections (done)
 - I want to be able to scale my recipes (done)
 - I want to be able to access the original recipe through the scale recipe through a link
-- I want to be able to specify the portion, preparation time, and list of ingredients for each recipe(done)
+- I want to be able to specify the portion, preparation time, and list of ingredients for each recipe (done)
 - I want to be able to filter my recipes according to preparation time and ingredients
+- I want to be able to save my recipe (done)
+- I want to be able to load my saved recipe when restarting the program (done)
 
  
