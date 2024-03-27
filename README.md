@@ -29,4 +29,9 @@ like this one, I could save so much time doing math calculations.
 - I want to be able to save my recipe (done)
 - I want to be able to load my saved recipe when restarting the program (done)
 
+TODO:
+- cannot add recipe, cannot see recipe in view recipe
+- view recipe row too narrow
+- need save box
+- need load box
  
