@@ -68,25 +68,52 @@ public class MyFrame extends JFrame implements ActionListener {
             this.setContentPane(scalePanel);
             System.out.println("add recipie");
         } else if (e.getSource() == b4) {
-            try {
-                book = jsonReader.read();
-                System.out.println("Loaded " + book.getName() + " from " + JSON_STORE);
-            } catch (IOException f) {
-                System.out.println("Unable to read from file: " + JSON_STORE);
-            }
+            read();
         } else {
-            try {
-                jsonWriter.open();
-                jsonWriter.write(book);
-                jsonWriter.close();
-                System.out.println("Saved " + book.getName() + " to " + JSON_STORE);
-            } catch (FileNotFoundException f) {
-                System.out.println("Unable to write to file: " + JSON_STORE);
-            }
+            write();
+        }
+    }
+
+    public void read() {
+        try {
+            book = jsonReader.read();
+            System.out.println("Loaded " + book.getName() + " from " + JSON_STORE);
+        } catch (IOException f) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    public void write() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(book);
+            jsonWriter.close();
+            System.out.println("Saved " + book.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException f) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
     public void init() {
+
+        setUpButtons();
+
+        ImageIcon scale = new ImageIcon(getClass().getResource("scale.png"));
+        ImageIcon add = new ImageIcon(getClass().getResource("add.png"));
+        ImageIcon book = new ImageIcon(getClass().getResource("book.jpeg"));
+        ImageIcon save = new ImageIcon(getClass().getResource("load.jpeg"));
+        ImageIcon load = new ImageIcon(getClass().getResource("loadReal.jpeg"));
+
+        b5.setIcon(save);
+        b4.setIcon(load);
+        b3.setIcon(scale);
+        b2.setIcon(add);
+        b1.setIcon(book);
+
+        addThingstoPanel();
+    }
+
+    public void setUpButtons() {
         b1 = new JButton();
         b2 = new JButton();
         b3 = new JButton();
@@ -105,24 +132,9 @@ public class MyFrame extends JFrame implements ActionListener {
         b4.setPreferredSize(new Dimension(300,120));
         b5.setPreferredSize(new Dimension(300,120));
 
-        ImageIcon scale = new ImageIcon(getClass().getResource("scale.png"));
-        ImageIcon add = new ImageIcon(getClass().getResource("add.png"));
-        ImageIcon book = new ImageIcon(getClass().getResource("book.jpeg"));
-        ImageIcon save = new ImageIcon(getClass().getResource("load.jpeg"));
-        ImageIcon load = new ImageIcon(getClass().getResource("loadReal.jpeg"));
-//        ImageIcon image = new ImageIcon("images.jpeg");
-//
-        b5.setIcon(save);
-        b4.setIcon(load);
-        b3.setIcon(scale);
-        b2.setIcon(add);
-        b1.setIcon(book);
+    }
 
-//        this.add(b1);
-//        this.add(b2);
-//        this.add(b3);
-
-
+    public void addThingstoPanel() {
         panel2 = new JPanel();
         panel2.setBackground(new Color(170,230,10));
         panel2.setPreferredSize(new Dimension(590, 640));
@@ -139,6 +151,4 @@ public class MyFrame extends JFrame implements ActionListener {
         b5.addActionListener(this);
         this.setVisible(true);
     }
-
-
 }

@@ -35,6 +35,10 @@ public class ScalePanel extends JPanel implements ActionListener {
     private GridBagConstraints constraints;
     private GridBagConstraints end;
     private GridBagLayout grid;
+    private JPanel option1;
+    private JPanel option2;
+    private JLabel optionLabel2;
+
 
     public ScalePanel(RecipeBook book, JPanel prevPanel, JFrame mainFrame) {
         this.prevPanel = prevPanel;
@@ -44,30 +48,52 @@ public class ScalePanel extends JPanel implements ActionListener {
         this.setSize(700,700);
         this.setBackground(new Color(190,200,250));
         //adding panel for first scale option
-        JPanel option1 = new JPanel();
+        option1 = new JPanel();
 
         ;
-        option1.setSize(400, 200);
+        option1.setPreferredSize(new Dimension(500, 150));
         option1.setLayout(grid = new GridBagLayout());
 
         end = new GridBagConstraints();
         constraints = new GridBagConstraints();
-        JLabel optionLabel1 = new JLabel();
-        optionLabel1.setText("1. scale by number");
 
-        option1.add(optionLabel1);
+        setOption1Constraints();
+
+        option2Setup();
+
+        setOption2Constraints();
+
+        home = new JButton("Home");
+        home.addActionListener(this);
+        this.add(option1, BorderLayout.CENTER);
+        this.add(option2, BorderLayout.CENTER);
+        add(home);
+        this.setVisible(true);
+    }
+
+    public void addButton() {
+
         submit1 = new JButton("submit");
         option1.add(submit1);
         submit2 = new JButton("submit");
         submit1.addActionListener(this);
         submit2.addActionListener(this);
+    }
+
+    public void setOption1Constraints() {
+        JLabel optionLabel1 = new JLabel();
+        optionLabel1.setText("1. scale by number");
+        option1.add(optionLabel1);
+
+        addButton();
 
         JLabel recipeNameLabel = new JLabel("Recipe Name:");
-        recipeNameField = new JTextField();
+        recipeNameField = new JTextField(11);
         JLabel portionLabel = new JLabel("multiply by (i.e. 2) :");
-        portionField = new JTextField();
+        portionField = new JTextField(5);
         constraints.gridwidth = GridBagConstraints.BOTH;
         end.gridwidth = GridBagConstraints.REMAINDER;
+
 
         grid.setConstraints(submit1, end);
         grid.setConstraints(submit2, end);
@@ -79,29 +105,33 @@ public class ScalePanel extends JPanel implements ActionListener {
         option1.add(recipeNameField);
         option1.add(portionLabel);
         option1.add(portionField);
+    }
 
-        //adding panel for second scaling option
-        JLabel recipeNameLabel2 = new JLabel("Recipe Name:");
-        recipeNameField2 = new JTextField();
-        JPanel option2 = new JPanel();
+    public void option2Setup() {
+        option2 = new JPanel();
         option2.setLayout(grid);
-        option2.setSize(400, 200);
+        option2.setPreferredSize(new Dimension(500, 200));
         option2.add(submit2);
-        JLabel optionLabel2 = new JLabel();
+        optionLabel2 = new JLabel();
         optionLabel2.setText("2. scale by ingredient ");
         option2.add(optionLabel2);
-        //text box for inputs needed to scale
+    }
+
+    // EFFECTS: set up the option 2 Jpanel
+    public void setOption2Constraints() {
+
+        JLabel recipeNameLabel2 = new JLabel("Recipe Name:");
+        recipeNameField2 = new JTextField(11);
         JLabel ingredientLabel = new JLabel("ingredient name: ");
-        ingredientField = new JTextField();
+        ingredientField = new JTextField(11);
         JLabel amountLabel = new JLabel("ingredient amount: ");
-        amountField = new JTextField();
+        amountField = new JTextField(5);
         grid.setConstraints(recipeNameLabel2, constraints);
         grid.setConstraints(recipeNameField2, end);
         grid.setConstraints(ingredientLabel, constraints);
         grid.setConstraints(ingredientField, end);
         grid.setConstraints(amountLabel, constraints);
         grid.setConstraints(amountField, end);
-
         option2.add(optionLabel2);
         option2.add(recipeNameLabel2);
         option2.add(recipeNameField2);
@@ -110,18 +140,7 @@ public class ScalePanel extends JPanel implements ActionListener {
         option2.add(ingredientField);
         option2.add(amountLabel);
         option2.add(amountField);
-
-//
-//
-        home = new JButton("Home");
-        home.addActionListener(this);
-        this.add(option1, BorderLayout.CENTER);
-        this.add(option2, BorderLayout.CENTER);
-        add(home);
-        this.setVisible(true);
     }
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

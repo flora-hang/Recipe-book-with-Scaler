@@ -30,6 +30,7 @@ public class AddRecipePanel extends JPanel implements ActionListener {
 
     private JPanel prevPanel;
     private MyFrame previousFrame;
+
     // creates a panel to get all the info needed for a recipe to be added
     public AddRecipePanel(RecipeBook book, JPanel prevPanel,  MyFrame previousFrame) {
 
@@ -52,8 +53,6 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         // Add initial ingredient panel
         addIngredientPanel();
 
-
-
         add(panel1);
         panel1.setVisible(true);
         this.setVisible(true);
@@ -71,30 +70,25 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         this.setLayout(new FlowLayout());
         this.setSize(700, 700);
         // Create labels and text fields for each input
-        nameLabel = new JLabel("Name:");
-        nameField = new JTextField();
-        portionLabel = new JLabel("Portion:");
-        portionField = new JTextField();
-        prepTimeLabel = new JLabel("Preparation Time (min):");
-        prepTimeField = new JTextField();
-        instructionsLabel = new JLabel("Instructions:");
-        instructionsField = new JTextField();
+        setUpLabel();
 
         makeGrid();
 
         // Create a button to submit the form
         JButton submitButton = new JButton("Submit");
         submitButton.setBackground(new Color(255,0,0));
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createRecipe();
-                System.out.println("ran create recipe");
-            }
-        });
+        submitButton.addActionListener(this);
         constraints.gridwidth = GridBagConstraints.REMAINDER;
         grid.setConstraints(submitButton, constraints);
         panel1.add(submitButton);
+        addThingsToPanel1();
+        this.setBackground(new Color(200,190,255));
+        this.add(panel1);
+        this.setVisible(true);
+    }
+
+    public void addThingsToPanel1() {
+
         panel1.add(nameLabel);
         panel1.add(nameField);
         panel1.add(portionLabel);
@@ -103,18 +97,25 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         panel1.add(prepTimeField);
         panel1.add(instructionsLabel);
         panel1.add(instructionsField);
-        this.setBackground(new Color(200,190,255));
-        this.add(panel1);
-        this.setVisible(true);
     }
 
+    public void setUpLabel() {
+        nameLabel = new JLabel("Name:");
+        nameField = new JTextField();
+        portionLabel = new JLabel("Portion:");
+        portionField = new JTextField();
+        prepTimeLabel = new JLabel("Preparation Time (min):");
+        prepTimeField = new JTextField();
+        instructionsLabel = new JLabel("Instructions:");
+        instructionsField = new JTextField();
+    }
 
     public void makeGrid() {
 
 
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-        constraints.weightx = 1.0;
+        constraints.weightx = 0.0;
         grid.setConstraints(nameLabel, constraints);
         constraints.gridwidth = GridBagConstraints.REMAINDER;
         grid.setConstraints(nameField, constraints);
@@ -179,6 +180,9 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         } else if (e.getSource() == addIngredientButton) {
             addIngredientPanel();
 
+        } else {
+            createRecipe();
+            System.out.println("ran create recipe");
         }
     }
 }

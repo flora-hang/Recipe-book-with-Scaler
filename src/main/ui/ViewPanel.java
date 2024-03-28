@@ -38,19 +38,7 @@ public class ViewPanel extends JPanel implements ActionListener {
 
         this.setBackground(new Color(200,190,255));
 
-        // Create table model with columns
-        String[] columnNames = {"Name", "Portion", "Prep Time", "Ingredients", "Instructions"};
-        model = new DefaultTableModel(columnNames, 0);
-
-
-        // Populate table with recipe data
-        for (Recipe recipe : book.getRecipes()) {
-            model.addRow(new Object[]{recipe.getRecipeName(), recipe.getPortion(), recipe.getPrepTime(),
-                    printIngredients(recipe.getIngredientList()), recipe.getInstruction()});
-        }
-
-        // Create JTable with the model
-        table = new JTable(model);
+        createTable();
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -59,6 +47,12 @@ public class ViewPanel extends JPanel implements ActionListener {
 
         //table.setSize(300, 400);
 
+        resizeTableColumnWidth();
+        table.setVisible(true);
+        this.setVisible(true);
+    }
+
+    public void resizeTableColumnWidth() {
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(3).setPreferredWidth(150); // Ingredients
         columnModel.getColumn(3).setCellRenderer(new TableCellRenderer() {
@@ -85,8 +79,22 @@ public class ViewPanel extends JPanel implements ActionListener {
                 return textArea;
             }
         });
-        table.setVisible(true);
-        this.setVisible(true);
+    }
+
+
+    public void createTable() {
+        String[] columnNames = {"Name", "Portion", "Prep Time", "Ingredients", "Instructions"};
+        model = new DefaultTableModel(columnNames, 0);
+
+
+        // Populate table with recipe data
+        for (Recipe recipe : book.getRecipes()) {
+            model.addRow(new Object[]{recipe.getRecipeName(), recipe.getPortion(), recipe.getPrepTime(),
+                    printIngredients(recipe.getIngredientList()), recipe.getInstruction()});
+        }
+
+        // Create JTable with the model
+        table = new JTable(model);
     }
 
     //EFFECTS: print out ingredient list for table
@@ -98,20 +106,7 @@ public class ViewPanel extends JPanel implements ActionListener {
         return allIngredients;
     }
 
-//    // EFFECTS: find max height for every row by going through the columns,
-//    // and set the row height to the max value
-//    public void updateRowHeights() {
-//        for (int row = 0; row < table.getRowCount(); row++) {
-//            int rowHeight = table.getRowHeight();
-//
-//            for (int column = 0; column < table.getColumnCount(); column++) {
-//                Component comp = table.prepareRenderer(table.getCellRenderer(row, column), row, column);
-//                rowHeight = Math.max(rowHeight, comp.getPreferredSize().height);
-//            }
-//
-//            table.setRowHeight(row, rowHeight);
-//        }
-//    }
+
 
 
     @Override

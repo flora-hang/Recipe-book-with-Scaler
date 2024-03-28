@@ -32,6 +32,75 @@
             }],
             "Recipe name": "tea.scaledByNum",
             "Recipe prep time": 3
+        },
+        {
+            "Recipe instruction": "make a cake",
+            "Recipe portion": 30,
+            "ingredients": [
+                {
+                    "amount": 30,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 2,
+                    "unit": "egg",
+                    "name": "egg"
+                },
+                {
+                    "amount": 30,
+                    "unit": "g",
+                    "name": "milk"
+                }
+            ],
+            "Recipe name": "Cake",
+            "Recipe prep time": 20
+        },
+        {
+            "Recipe instruction": "make a cake",
+            "Recipe portion": 150,
+            "ingredients": [
+                {
+                    "amount": 150,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 10,
+                    "unit": "egg",
+                    "name": "egg"
+                },
+                {
+                    "amount": 150,
+                    "unit": "g",
+                    "name": "milk"
+                }
+            ],
+            "Recipe name": "Cake.scaledByNum",
+            "Recipe prep time": 20
+        },
+        {
+            "Recipe instruction": "make a cake",
+            "Recipe portion": 150,
+            "ingredients": [
+                {
+                    "amount": 150,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 10,
+                    "unit": "egg",
+                    "name": "egg"
+                },
+                {
+                    "amount": 150,
+                    "unit": "g",
+                    "name": "milk"
+                }
+            ],
+            "Recipe name": "Cake.scaledByNum",
+            "Recipe prep time": 20
         }
     ],
     "name": "first Collection"

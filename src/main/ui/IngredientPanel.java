@@ -16,17 +16,18 @@ public class IngredientPanel extends JPanel {
     private GridBagLayout grid;
 
     public IngredientPanel() {
-        setLayout(new GridBagLayout());
 
+        this.setSize(new Dimension(300, 150));
         grid = new GridBagLayout();
+        setLayout(grid);
         constraints = new GridBagConstraints();
         this.setBackground(new Color(240,190,255));
         nameLabel = new JLabel("name of Ingredient: ");
         amountLabel = new JLabel("amount (i.e. 20): ");
         unitLabel = new JLabel("unit (i.e. g)");
-        nameField = new JTextField();
-        amountField = new JTextField();
-        unitField = new JTextField();
+        nameField = new JTextField(20);
+        amountField = new JTextField(5);
+        unitField = new JTextField(6);
 
         setConstraints();
 
