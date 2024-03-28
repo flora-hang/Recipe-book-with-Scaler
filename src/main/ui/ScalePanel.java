@@ -17,6 +17,8 @@ public class ScalePanel extends JPanel implements ActionListener {
     private JTextField portionField;
     private JTextField ingredientField;
     private JTextField amountField;
+    private JPanel prevPanel;
+    private JFrame mainFrame;
     private RecipeBook book;
     private Recipe recipe1;
     private Recipe recipe2;
@@ -34,10 +36,12 @@ public class ScalePanel extends JPanel implements ActionListener {
     private GridBagConstraints end;
     private GridBagLayout grid;
 
-    public ScalePanel(RecipeBook book) {
+    public ScalePanel(RecipeBook book, JPanel prevPanel, JFrame mainFrame) {
+        this.prevPanel = prevPanel;
+        this.mainFrame = mainFrame;
         this.book = book;
         this.setLayout(new FlowLayout());
-        this.setSize(500,500);
+        this.setSize(700,700);
         this.setBackground(new Color(190,200,250));
         //adding panel for first scale option
         JPanel option1 = new JPanel();
@@ -56,8 +60,8 @@ public class ScalePanel extends JPanel implements ActionListener {
         option1.add(submit1);
         submit2 = new JButton("submit");
         submit1.addActionListener(this);
-//        submit2.addActionListener(this);
-        //text box for inputs needed to perform scaling
+        submit2.addActionListener(this);
+
         JLabel recipeNameLabel = new JLabel("Recipe Name:");
         recipeNameField = new JTextField();
         JLabel portionLabel = new JLabel("multiply by (i.e. 2) :");
@@ -131,15 +135,16 @@ public class ScalePanel extends JPanel implements ActionListener {
 
         } else if (e.getSource() == submit2) {
             System.out.println("recipe scaled by option 2");
-            recipeName1 = recipeNameField.getText();
+            recipeName1 = recipeNameField2.getText();
             recipe2 = book.findRecipe(recipeName1);
             amount = Double.parseDouble(amountField.getText());
             ingredientName = ingredientField.getText();
             ingredient = recipe2.findIngredient(ingredientName);
             converter = new RecipeConvertor(recipe2);
-            book.addRecipe(converter.scaleBasedOnIngredient(recipe1, ingredient, amount));
+            book.addRecipe(converter.scaleBasedOnIngredient(recipe2, ingredient, amount));
+            System.out.println("scaled by option 2");
         } else {
-            MyFrame frame = new MyFrame();
+            mainFrame.setContentPane(prevPanel);
         }
     }
 

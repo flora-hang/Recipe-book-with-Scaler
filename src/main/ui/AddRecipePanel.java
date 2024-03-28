@@ -69,7 +69,7 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         grid = new GridBagLayout();
         panel1.setLayout(grid);
         this.setLayout(new FlowLayout());
-        this.setSize(500,500);
+        this.setSize(700, 700);
         // Create labels and text fields for each input
         nameLabel = new JLabel("Name:");
         nameField = new JTextField();
@@ -84,6 +84,7 @@ public class AddRecipePanel extends JPanel implements ActionListener {
 
         // Create a button to submit the form
         JButton submitButton = new JButton("Submit");
+        submitButton.setBackground(new Color(255,0,0));
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

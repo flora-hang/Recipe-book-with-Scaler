@@ -32,17 +32,9 @@ public class ViewPanel extends JPanel implements ActionListener {
         add(home);
         this.book = book;
 
-//        Recipe recipe1 = new Recipe("Pizza", 9, 50, "prepare dough");
-//        Recipe recipe2 = new Recipe("Pasta", 9, 50, "prepare dough");
-//        recipe1.addIngredient(new Ingredients("flour", 700, "g"));
-//        recipe1.addIngredient(new Ingredients("water", 300, "g"));
-//        recipe2.addIngredient(new Ingredients("flour", 700, "g"));
-//        recipe2.addIngredient(new Ingredients("egg", 300, "g"));
-//        book.addRecipe(recipe1);
-//        book.addRecipe(recipe2);
         this.setLayout(new FlowLayout());
 
-        this.setSize(500,500);
+        this.setSize(700,700);
 
         this.setBackground(new Color(200,190,255));
 
@@ -63,10 +55,10 @@ public class ViewPanel extends JPanel implements ActionListener {
         add(scrollPane, BorderLayout.CENTER);
 
 
-        table.setRowHeight(200); //not changing row height
-        //updateRowHeights();
-        table.setSize(300, 400);
-//        this.add(table);
+        table.setRowHeight(150);
+
+        //table.setSize(300, 400);
+
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(3).setPreferredWidth(150); // Ingredients
         columnModel.getColumn(3).setCellRenderer(new TableCellRenderer() {
