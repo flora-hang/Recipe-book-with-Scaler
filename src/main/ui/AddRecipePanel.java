@@ -11,6 +11,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// create a panel to add recipe
 public class AddRecipePanel extends JPanel implements ActionListener {
     private RecipeBook book;
     private JButton addIngredientButton;
@@ -31,16 +32,16 @@ public class AddRecipePanel extends JPanel implements ActionListener {
     private JPanel prevPanel;
     private MyFrame previousFrame;
 
-    // creates a panel to get all the info needed for a recipe to be added
+    // EFFECTS: creates a panel to get all the info needed for a recipe to be added
     public AddRecipePanel(RecipeBook book, JPanel prevPanel,  MyFrame previousFrame) {
 
         init();
         this.prevPanel = prevPanel;
         this.previousFrame = previousFrame;
-        //this.previousFrame.setVisible(false);
+
         this.book = book;
         ingredientPanels = new ArrayList<>();
-        // Add Ingredients label
+
         JLabel ingredientsLabel = new JLabel("Ingredients:");
         panel1.add(ingredientsLabel);
 
@@ -58,6 +59,8 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initialize the panel
     public void init() {
 
         home = new JButton("Home");
@@ -87,6 +90,8 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add labels and text fields to a sub panel
     public void addThingsToPanel1() {
 
         panel1.add(nameLabel);
@@ -99,6 +104,8 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         panel1.add(instructionsField);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add text to labels
     public void setUpLabel() {
         nameLabel = new JLabel("Name:");
         nameField = new JTextField();
@@ -110,8 +117,9 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         instructionsField = new JTextField();
     }
 
+    // MODIFIES: this
+    // EFFECTS: add constraints to labels and text fields for gridBag layout
     public void makeGrid() {
-
 
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
@@ -138,7 +146,8 @@ public class AddRecipePanel extends JPanel implements ActionListener {
 
     }
 
-    //EFFECTS: Method to add a new ingredient panel
+    // MODIFIES: this
+    // EFFECTS: Method to add a new ingredient panel
     public void addIngredientPanel() {
         IngredientPanel ingredientPanel = new IngredientPanel();
         ingredientPanels.add(ingredientPanel);
@@ -147,7 +156,8 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         revalidate();
     }
 
-    // Method to create Recipe object from user input
+    // MODIFIES: this
+    // EFFECTS: Method to create Recipe object from user input
     public void createRecipe() {
         String name = nameField.getText();
         Double portion = Double.parseDouble(portionField.getText());
@@ -170,16 +180,16 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         System.out.println("recipe added");
     }
 
+    // MODIFIES: this
+    // EFFECTS: press home would lead to panel with all buttons; add ingredient add another panel for addition
+    // all ingredients, press submit adds a recipe to the book
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == home) {
-            //previousFrame.setVisible(true);
-
             previousFrame.setContentPane(prevPanel);
 
         } else if (e.getSource() == addIngredientButton) {
             addIngredientPanel();
-
         } else {
             createRecipe();
             System.out.println("ran create recipe");

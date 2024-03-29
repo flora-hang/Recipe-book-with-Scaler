@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
-
+// create a home page
 
 public class MyFrame extends JFrame implements ActionListener {
 
@@ -36,6 +36,8 @@ public class MyFrame extends JFrame implements ActionListener {
 
     private JPanel panel2;
 
+    // MODIFIES: this
+    // EFFECTS: initiate the home page
     public MyFrame() {
 
         init();
@@ -53,6 +55,9 @@ public class MyFrame extends JFrame implements ActionListener {
         //this.setContentPane(frame);
     }
 
+    // MODIFIES: this
+    // EFFECTS: b1 leads to the viewPanel where recipes are displayed; b2 leads to the add ingredient panel;
+    // b3 leads to the scale panel to scale recipes; b4 is load recipe; b5 is save recipe
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b1) {
             viewPanel = new ViewPanel(book, panel2, this);
@@ -74,6 +79,8 @@ public class MyFrame extends JFrame implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: read the json file and add the recipes to the recipe bok
     public void read() {
         try {
             book = jsonReader.read();
@@ -83,6 +90,8 @@ public class MyFrame extends JFrame implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: save the recipes in the current recipe book to json file
     public void write() {
         try {
             jsonWriter.open();
@@ -94,6 +103,8 @@ public class MyFrame extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: add imageIcon to all buttons
     public void init() {
 
         setUpButtons();
@@ -113,6 +124,8 @@ public class MyFrame extends JFrame implements ActionListener {
         addThingstoPanel();
     }
 
+    // MODIFIES: this
+    // EFFECTS: set up the buttons
     public void setUpButtons() {
         b1 = new JButton();
         b2 = new JButton();
@@ -134,6 +147,8 @@ public class MyFrame extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: add buttons to the panel, and a event listener to all buttons
     public void addThingstoPanel() {
         panel2 = new JPanel();
         panel2.setBackground(new Color(170,230,10));

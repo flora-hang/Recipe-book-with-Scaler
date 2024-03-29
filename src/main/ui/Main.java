@@ -6,7 +6,7 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
-        //new RecipeApp();
+        //new Recipe book home page
         MyFrame myframe = new MyFrame();
 
     }

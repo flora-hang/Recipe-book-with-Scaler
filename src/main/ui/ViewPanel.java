@@ -13,9 +13,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 
+// create a view panel that display all the recipes in the book in a table
 public class ViewPanel extends JPanel implements ActionListener {
 
-    private JPanel viewRecipeFrame;
     private JTable table;
     private DefaultTableModel model;
     private RecipeBook book;
@@ -23,6 +23,7 @@ public class ViewPanel extends JPanel implements ActionListener {
     private MyFrame previous;
     private JPanel prevPanel;
 
+    // EFFECTS: instantiate a view panel
     public ViewPanel(RecipeBook book, JPanel prevPanel, MyFrame previous) {
 
         this.prevPanel = prevPanel;
@@ -52,6 +53,8 @@ public class ViewPanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Resize the height of the row to show the entire list of ingredients
     public void resizeTableColumnWidth() {
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(3).setPreferredWidth(150); // Ingredients
@@ -81,7 +84,8 @@ public class ViewPanel extends JPanel implements ActionListener {
         });
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: creates a table with five columns
     public void createTable() {
         String[] columnNames = {"Name", "Portion", "Prep Time", "Ingredients", "Instructions"};
         model = new DefaultTableModel(columnNames, 0);
@@ -97,7 +101,8 @@ public class ViewPanel extends JPanel implements ActionListener {
         table = new JTable(model);
     }
 
-    //EFFECTS: print out ingredient list for table
+    // MODIFIES: this
+    // EFFECTS: print out ingredient list for table
     public String printIngredients(List<Ingredients> ingredientsList) {
         String allIngredients = "";
         for (Ingredients i : ingredientsList) {
@@ -106,9 +111,8 @@ public class ViewPanel extends JPanel implements ActionListener {
         return allIngredients;
     }
 
-
-
-
+    // MODIFIES: this
+    // EFFECTS: when home button is pressed , bring back the panel on the home page frame with the buttons
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == home) {

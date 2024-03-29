@@ -5,6 +5,7 @@ import model.Ingredients;
 import javax.swing.*;
 import java.awt.*;
 
+// create a sub panel for additional ingredients
 public class IngredientPanel extends JPanel {
     private JLabel nameLabel;
     private JLabel amountLabel;
@@ -15,6 +16,7 @@ public class IngredientPanel extends JPanel {
     private GridBagConstraints constraints;
     private GridBagLayout grid;
 
+    // EFFECTS: initialize the new ingredients panel
     public IngredientPanel() {
 
         this.setSize(new Dimension(300, 150));
@@ -40,6 +42,8 @@ public class IngredientPanel extends JPanel {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: returns an Ingredients object from the fields
     public Ingredients getIngredient() {
         String name = nameField.getText();
         double amount = Double.parseDouble(amountField.getText());
@@ -47,6 +51,8 @@ public class IngredientPanel extends JPanel {
         return new Ingredients(name, amount, unit);
     }
 
+    // MODIFIES: this
+    // EFFECTS: set constraints for all the label and text fields
     public void setConstraints() {
         constraints.weightx = 1.0;
         constraints.gridwidth = GridBagConstraints.BOTH;

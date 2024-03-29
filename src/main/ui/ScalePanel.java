@@ -39,7 +39,8 @@ public class ScalePanel extends JPanel implements ActionListener {
     private JPanel option2;
     private JLabel optionLabel2;
 
-
+    // MODIFIES: this
+    // EFFECTS: initiate the scale panel
     public ScalePanel(RecipeBook book, JPanel prevPanel, JFrame mainFrame) {
         this.prevPanel = prevPanel;
         this.mainFrame = mainFrame;
@@ -71,6 +72,8 @@ public class ScalePanel extends JPanel implements ActionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add two submit button
     public void addButton() {
 
         submit1 = new JButton("submit");
@@ -80,6 +83,8 @@ public class ScalePanel extends JPanel implements ActionListener {
         submit2.addActionListener(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add labels and text fields, and add constraints
     public void setOption1Constraints() {
         JLabel optionLabel1 = new JLabel();
         optionLabel1.setText("1. scale by number");
@@ -107,6 +112,8 @@ public class ScalePanel extends JPanel implements ActionListener {
         option1.add(portionField);
     }
 
+    // MODIFIES:  this
+    // EFFECTS: option2 panel set up
     public void option2Setup() {
         option2 = new JPanel();
         option2.setLayout(grid);
@@ -117,6 +124,7 @@ public class ScalePanel extends JPanel implements ActionListener {
         option2.add(optionLabel2);
     }
 
+    // MODIFIES: this
     // EFFECTS: set up the option 2 Jpanel
     public void setOption2Constraints() {
 
@@ -142,6 +150,10 @@ public class ScalePanel extends JPanel implements ActionListener {
         option2.add(amountField);
     }
 
+    // MODIFIES: this
+    // EFFECTS: when submit1 is pressed scale by a number and add a recipe to the book,
+    // when submit2 is pressed scale based on ingredients and add a recipe to the book,
+    // when home is pressed bring up the panel with buttons
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit1) {
