@@ -34,4 +34,19 @@ TODO:
 - view recipe row too narrow
 - need save box
 - need load box
- 
+
+# Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the 
+add recipe button, inputting required fields and click submit. By clicking the home button you can check if 
+the recipe is added by clicking the view recipe button.
+- After having at least one recipe in the recipe book, you can scale recipe by clicking scale recipe button on the home 
+page. There are two panels on the screen after button is pressed. The first panel allows you to scale the recipe by 
+taking a number and multiplying the ingredient amount by that number, then the recipe will be added to the view recipe 
+panel. The second way is to take in an ingredient name and an amount of that ingredient you have on hand, and scale the
+recipe like in chemistry with limited ingredient. The result too can be seen in the view recipe panel after hitting 
+submit. You will have to click the home button to see the view recipe button.
+- You can locate my visual component by looking at the image icon on the buttons
+- You can save the state of my application by pressing save recipe button on home page
+- You can reload the state of my application by pressing load button on home page. Recipes will be loaded into the view
+recipe panel, which can be accessed by clicking the view recipe button on the home page.

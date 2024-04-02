@@ -101,6 +101,60 @@
             ],
             "Recipe name": "Cake.scaledByNum",
             "Recipe prep time": 20
+        },
+        {
+            "Recipe instruction": "add water to rice",
+            "Recipe portion": 3,
+            "ingredients": [
+                {
+                    "amount": 3,
+                    "unit": "cups",
+                    "name": "rice"
+                },
+                {
+                    "amount": 5,
+                    "unit": "cups",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "rice",
+            "Recipe prep time": 30
+        },
+        {
+            "Recipe instruction": "add water to rice",
+            "Recipe portion": 15,
+            "ingredients": [
+                {
+                    "amount": 15,
+                    "unit": "cups",
+                    "name": "rice"
+                },
+                {
+                    "amount": 25,
+                    "unit": "cups",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "rice.scaledByNum",
+            "Recipe prep time": 30
+        },
+        {
+            "Recipe instruction": "add water to rice",
+            "Recipe portion": 2.4000000000000004,
+            "ingredients": [
+                {
+                    "amount": 2.4000000000000004,
+                    "unit": "cups",
+                    "name": "rice"
+                },
+                {
+                    "amount": 4,
+                    "unit": "cups",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "rice.scaledByNum",
+            "Recipe prep time": 30
         }
     ],
     "name": "first Collection"

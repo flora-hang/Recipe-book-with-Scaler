@@ -122,6 +122,7 @@ public class ScalePanel extends JPanel implements ActionListener {
         optionLabel2 = new JLabel();
         optionLabel2.setText("2. scale by ingredient ");
         option2.add(optionLabel2);
+
     }
 
     // MODIFIES: this
@@ -134,6 +135,7 @@ public class ScalePanel extends JPanel implements ActionListener {
         ingredientField = new JTextField(11);
         JLabel amountLabel = new JLabel("ingredient amount: ");
         amountField = new JTextField(5);
+        grid.setConstraints(optionLabel2, end);
         grid.setConstraints(recipeNameLabel2, constraints);
         grid.setConstraints(recipeNameField2, end);
         grid.setConstraints(ingredientLabel, constraints);
