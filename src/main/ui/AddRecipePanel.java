@@ -177,7 +177,7 @@ public class AddRecipePanel extends JPanel implements ActionListener {
         // adding recipe to recipeBook
         book.addRecipe(recipe);
 
-        System.out.println("recipe added");
+
     }
 
     // MODIFIES: this
@@ -192,7 +192,6 @@ public class AddRecipePanel extends JPanel implements ActionListener {
             addIngredientPanel();
         } else {
             createRecipe();
-            System.out.println("ran create recipe");
         }
     }
 }

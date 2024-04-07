@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Ingredients;
 import model.Recipe;
 import model.RecipeBook;
@@ -31,8 +33,7 @@ public class MyFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/workroom.json";
     private ScalePanel scalePanel;
     private RecipeBook book;
-    private Recipe recipe;
-    private Ingredients ingredients;
+    private EventLog events;
 
     private JPanel panel2;
 
@@ -44,9 +45,20 @@ public class MyFrame extends JFrame implements ActionListener {
         book = new RecipeBook("My RecipeBook");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+        events = events.getInstance();
         this.setLayout(new FlowLayout());
         this.setTitle("Recipe Collection");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event e : events) {
+                    System.out.println(e.toString() + "\n");
+                }
+                //THEN you can exit the program
+                System.exit(0);
+            }
+        });
 
         this.setSize(700,700);
 

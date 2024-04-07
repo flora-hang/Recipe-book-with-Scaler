@@ -155,6 +155,75 @@
             ],
             "Recipe name": "rice.scaledByNum",
             "Recipe prep time": 30
+        },
+        {
+            "Recipe instruction": "instruction..",
+            "Recipe portion": 9,
+            "ingredients": [
+                {
+                    "amount": 3,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 3,
+                    "unit": "g",
+                    "name": "sugar"
+                },
+                {
+                    "amount": 3,
+                    "unit": "g",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "cookies",
+            "Recipe prep time": 90
+        },
+        {
+            "Recipe instruction": "instruction..",
+            "Recipe portion": 90,
+            "ingredients": [
+                {
+                    "amount": 30,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 30,
+                    "unit": "g",
+                    "name": "sugar"
+                },
+                {
+                    "amount": 30,
+                    "unit": "g",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "cookies.scaledByNum",
+            "Recipe prep time": 90
+        },
+        {
+            "Recipe instruction": "instruction..",
+            "Recipe portion": 120,
+            "ingredients": [
+                {
+                    "amount": 40,
+                    "unit": "g",
+                    "name": "flour"
+                },
+                {
+                    "amount": 40,
+                    "unit": "g",
+                    "name": "sugar"
+                },
+                {
+                    "amount": 40,
+                    "unit": "g",
+                    "name": "water"
+                }
+            ],
+            "Recipe name": "cookies.scaledByNum",
+            "Recipe prep time": 90
         }
     ],
     "name": "first Collection"

@@ -8,8 +8,7 @@ import java.util.ArrayList;
 public class RecipeBook implements Writable {
     ArrayList<Recipe> recipeBook;
     String nameOfRecipeBook;
-    String collectionName;
-    Recipe recipe;
+
 
     public RecipeBook(String name) {
         
@@ -21,6 +20,7 @@ public class RecipeBook implements Writable {
     //EFFECT: for test purpose, add a recipe to recipe book
     public void addRecipe(Recipe recipe) {
         recipeBook.add(recipe);
+        EventLog.getInstance().logEvent(new Event("Added recipe: " + recipe.getRecipeName()));
     }
 
     public ArrayList<Recipe> getRecipes() {
