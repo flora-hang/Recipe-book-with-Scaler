@@ -35,7 +35,7 @@ TODO:
 - need save box
 - need load box
 
-# Instructions for Grader
+# Instructions for User
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the 
 add recipe button, inputting required fields and click submit. By clicking the home button you can check if 
@@ -51,14 +51,7 @@ submit. You will have to click the home button to see the view recipe button.
 - You can reload the state of my application by pressing load button on home page. Recipes will be loaded into the view
 recipe panel, which can be accessed by clicking the view recipe button on the home page.
 
-# Phase 4 task 2
-- Sun Apr 07 11:10:53 PDT 2024
-  Added recipe: salad
-
-# Phase 4 task 3
-- Looking at the diagram, I realize the amount of coupling in my program is very high. I should probably do something to
-reduce the amount of coupling. Since the high coupling will lead to a series of problems when I change any one aspect
-of the model classes. However, since a lot of the referencing to the recipe class was to use the constructor, I can 
-seem to think of a way to reduce the coupling. There is also a lot of fields being declared in the ScaleRecipePanel
-class. I could make some of the fields local instead of universal since we do want to make variable as local as possible
-to avoid complications in the future. 
+# Future Direction
+- This application would be very useful if it could be developed into a webpage extension that can scan through a recipe webpage
+  and parse the recipe on the webpage and provide the options to scale the recipe and then spit out the scaled version of the recipe.
+  
